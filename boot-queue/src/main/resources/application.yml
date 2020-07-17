@@ -1,6 +1,13 @@
 spring:
   application:
     name: boot-queue
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
+
 eureka:
   instance:
     hostname: rabbitApp
@@ -10,4 +17,6 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: ${eurekaHost}
+
+
 
