@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: boot-queue
+eureka:
+  instance:
+    hostname: rabbitApp
+    ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${eurekaHost}
+
