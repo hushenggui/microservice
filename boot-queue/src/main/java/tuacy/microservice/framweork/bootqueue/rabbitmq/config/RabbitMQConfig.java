@@ -22,51 +22,27 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 @Slf4j
 public class RabbitMQConfig {
-
-    @Bean
-    RabbitTemplate  rabbitTemplate() {
-        RabbitTemplate  rabbitTemplate = new RabbitTemplate ();
-        rabbitTemplate.setConfirmCallback(confirmCallback);
-        rabbitTemplate.setReturnCallback(returnCallback);
-        return rabbitTemplate;
-    }
-
     @Autowired
     public ConnectionFactory connectionFactory;
-
     @Bean
-    public RabbitListenerContainerFactory rabbitListenerContainerFactory(ConnectionFactory mqConnectionFactory) {
-        SimpleRabbitListenerContainerFactory listenerContainerFactory = new SimpleRabbitListenerContainerFactory();
-        listenerContainerFactory.setConnectionFactory(mqConnectionFactory);
-        //--加上这句
-        listenerContainerFactory.setMessageConverter(new Jackson2JsonMessageConverter());
-        return listenerContainerFactory;
-    }
-
-
-    /**
-     * CorrelationData 消息的附加信息，即自定义id
-     * isack 代表消息是否被broker（MQ）接收 true 代表接收 false代表拒收。
-     * cause 如果拒收cause则说明拒收的原因，帮助我们进行后续处理
-     */
-    RabbitTemplate.ConfirmCallback confirmCallback = new RabbitTemplate.ConfirmCallback() {
-        @Override
-        public void confirm(CorrelationData correlationData, boolean isAck, String cause) {
+    RabbitTemplate  rabbitTemplate() {
+        RabbitTemplate  rabbitTemplate = new RabbitTemplate (connectionFactory);
+        /**
+         * CorrelationData 消息的附加信息，即自定义id
+         * isack 代表消息是否被broker（MQ）接收 true 代表接收 false代表拒收。
+         * cause 如果拒收cause则说明拒收的原因，帮助我们进行后续处理
+         */
+        rabbitTemplate.setConfirmCallback((CorrelationData correlationData, boolean isAck, String cause) ->{
             log.info("correlationData-----------" + correlationData);
             log.info("ack-----------" + isAck);
             if (isAck == false) {
                 log.info("拒绝接收" + cause);
             }
-
-        }
-    };
-
-    RabbitTemplate.ReturnCallback returnCallback = new RabbitTemplate.ReturnCallback() {
-        @Override
-        public void returnedMessage(Message message, int code, String text, String exchange, String routingKey) {
+        });
+        rabbitTemplate.setReturnCallback((Message message, int code, String text, String exchange, String routingKey) ->{
             log.info("Code:" + code + ",text:" + text);
             log.info("Exchange:" + exchange + ",routingKey:" + routingKey);
-        }
-    };
-
+        });
+        return rabbitTemplate;
+    }
 }

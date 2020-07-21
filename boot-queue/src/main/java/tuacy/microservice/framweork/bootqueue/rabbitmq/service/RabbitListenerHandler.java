@@ -25,6 +25,7 @@ public class RabbitListenerHandler {
             exchange = @Exchange(value = exchangeName, ignoreDeclarationExceptions = "true"))
     )
     public void work1(SysUser sysUser) {
+        System.out.println();
         System.out.println("RabbitListener work1 -- >  ");
         System.out.println(sysUser);
     }
@@ -35,6 +36,7 @@ public class RabbitListenerHandler {
             exchange = @Exchange(value = exchangeName, ignoreDeclarationExceptions = "true"))
     )
     public void work2(SysUser sysUser) {
+        System.out.println();
         System.out.println("RabbitListener work2 -- >  ");
         System.out.println(sysUser);
     }
@@ -45,7 +47,20 @@ public class RabbitListenerHandler {
             exchange = @Exchange(value = exchangeName, ignoreDeclarationExceptions = "true"))
     )
     public void work3(SysUser sysUser) {
+        System.out.println();
         System.out.println("RabbitListener work3 -- >  ");
+        System.out.println(sysUser);
+    }
+
+
+    @RabbitListener(bindings = @QueueBinding(
+            value = @Queue(value = "work", durable = "true"),
+            key = "work",
+            exchange = @Exchange(value = exchangeName, ignoreDeclarationExceptions = "true"))
+    )
+    public void workdelay(SysUser sysUser) {
+        System.out.println();
+        System.out.println("RabbitListener work_delay -- >  ");
         System.out.println(sysUser);
     }
 }

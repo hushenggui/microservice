@@ -16,11 +16,23 @@ public class RabbitMQProducer {
     @Autowired
     RabbitTemplate rabbitTemplate;
 
+
+    //工作模式
     public void sendMsg(){
         SysUser sysUser = new SysUser();
         sysUser.setName("zhangsan");
         sysUser.setName("lisi");
         rabbitTemplate.convertAndSend("", "work1", sysUser);
+        rabbitTemplate.convertAndSend(RabbitListenerHandler.exchangeName, "work_delay", sysUser);
+    }
+
+
+    //fanout模式
+    public void sendMsgFanout(){
+        SysUser sysUser = new SysUser();
+        sysUser.setName("zhangsan");
+        sysUser.setName("lisi");
+        rabbitTemplate.convertAndSend(RabbitListenerFanout.exchangeName, "", sysUser);
     }
 
 }
