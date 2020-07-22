@@ -11,7 +11,7 @@ import tuacy.microservice.framweork.bootqueue.rabbitmq.model.SysUser;
 
 /**
  * @program: microservice-framework
- * @description: 发布订阅Fanout模式
+ * @description: 发布订阅Fanout模式  一个队列可以绑定到多个交换机 work1 既在direct 又在 fanout
  * @author: hushenggui
  * @create: 2020-07-20 10:49
  **/

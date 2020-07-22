@@ -10,7 +10,7 @@ import tuacy.microservice.framweork.bootqueue.rabbitmq.model.SysUser;
 
 /**
  * @program: microservice-framework
- * @description: 监听类       验证工作模式  -->  一个交换机一个队列， 多个消费者监听
+ * @description: 监听类       验证工作模式  -->  一个交换机一个队列， 多个消费者监听  不绑定key的情况
  * @author: hushenggui
  * @create: 2020-07-17 14:59
  **/
@@ -52,15 +52,4 @@ public class RabbitListenerHandler {
         System.out.println(sysUser);
     }
 
-
-    @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = "work", durable = "true"),
-            key = "work",
-            exchange = @Exchange(value = exchangeName, ignoreDeclarationExceptions = "true"))
-    )
-    public void workdelay(SysUser sysUser) {
-        System.out.println();
-        System.out.println("RabbitListener work_delay -- >  ");
-        System.out.println(sysUser);
-    }
 }

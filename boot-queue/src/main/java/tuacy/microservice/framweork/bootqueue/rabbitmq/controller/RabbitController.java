@@ -20,14 +20,20 @@ public class RabbitController {
     @RequestMapping("sendMsg")
     public String rabbitmqTest(){
         rabbitMQProducer.sendMsg();
-        return "Success";
+        return "sendMsg";
     }
 
 
     @RequestMapping("sendMsgFanout")
     public String rabbitmqFanout(){
         rabbitMQProducer.sendMsgFanout();
-        return "Success";
+        return "sendMsgFanout";
+    }
+
+    @RequestMapping("sendMsgTopic")
+    public String rabbitmqTopic(){
+        rabbitMQProducer.sendMsgTopic();
+        return "sendMsgTopic";
     }
 
 }

@@ -21,9 +21,10 @@ public class RabbitMQProducer {
     public void sendMsg(){
         SysUser sysUser = new SysUser();
         sysUser.setName("zhangsan");
-        sysUser.setName("lisi");
+        sysUser.setRoutingKey("work1");
         rabbitTemplate.convertAndSend("", "work1", sysUser);
-        rabbitTemplate.convertAndSend(RabbitListenerHandler.exchangeName, "work_delay", sysUser);
+        sysUser.setRoutingKey("policyRevert_delay");
+        rabbitTemplate.convertAndSend(RabbitListenerHandler.exchangeName, "policyRevert_delay", sysUser);
     }
 
 
@@ -31,8 +32,21 @@ public class RabbitMQProducer {
     public void sendMsgFanout(){
         SysUser sysUser = new SysUser();
         sysUser.setName("zhangsan");
-        sysUser.setName("lisi");
+        sysUser.setRoutingKey("");
         rabbitTemplate.convertAndSend(RabbitListenerFanout.exchangeName, "", sysUser);
     }
+
+    //topic模式
+    public void sendMsgTopic(){
+        SysUser sysUser = new SysUser();
+        sysUser.setName("zhangsan");
+        sysUser.setRoutingKey("work-topic.delay");
+        rabbitTemplate.convertAndSend(RabbitListenerTopic.exchangeName, "work-topic.delay", sysUser);
+        sysUser.setRoutingKey("work-topic.delay1");
+        rabbitTemplate.convertAndSend(RabbitListenerTopic.exchangeName, "work-topic.delay1", sysUser);
+        sysUser.setRoutingKey("work-topic.delay2");
+        rabbitTemplate.convertAndSend(RabbitListenerTopic.exchangeName, "work-topic.delay2", sysUser);
+    }
+
 
 }
