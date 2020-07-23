@@ -1,10 +1,7 @@
 package tuacy.microservice.framweork.bootqueue.rabbitmq.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.annotation.Exchange;
-import org.springframework.amqp.rabbit.annotation.Queue;
-import org.springframework.amqp.rabbit.annotation.QueueBinding;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.annotation.*;
 import org.springframework.stereotype.Component;
 import tuacy.microservice.framweork.bootqueue.rabbitmq.model.SysUser;
 
@@ -51,5 +48,4 @@ public class RabbitListenerHandler {
         System.out.println("RabbitListener work3 -- >  ");
         System.out.println(sysUser);
     }
-
 }

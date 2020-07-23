@@ -18,17 +18,17 @@ import tuacy.microservice.framweork.bootqueue.rabbitmq.model.SysUser;
 @Slf4j
 public class RabbitListenerHeader {
     //
-    public static final String exchangeName = "hsg-service-direct";
+    public static final String exchangeName = "hsg-service-header";
 
-    @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = "work-direct", durable = "true"),
-            key = "work-direct",
+   /* @RabbitListener(bindings = @QueueBinding(
+            value = @Queue(value = "work-header", durable = "true"),
+            key = "work-header",
             exchange = @Exchange(value = exchangeName, ignoreDeclarationExceptions = "true")
-    ),errorHandler = "topicErrorHaddler"
     )
-    public void direct1(SysUser sysUser) throws Exception {
+    )
+    public void header1(SysUser sysUser) throws Exception {
         System.out.println();
-        System.out.println("RabbitListener direct1 -- >  ");
+        System.out.println("RabbitListener header1 -- >  ");
         System.out.println(sysUser);
         throw  new Exception();
     }
@@ -36,5 +36,5 @@ public class RabbitListenerHeader {
     public void topicErrorHaddler(){
         System.out.println();
         System.out.println("topicErrorHaddler  -- >  error"   );
-    }
+    }*/
 }

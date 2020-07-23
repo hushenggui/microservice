@@ -23,8 +23,9 @@ public class RabbitMQProducer {
         sysUser.setName("zhangsan");
         sysUser.setRoutingKey("work1");
         rabbitTemplate.convertAndSend("", "work1", sysUser);
-        sysUser.setRoutingKey("policyRevert_delay");
-        rabbitTemplate.convertAndSend(RabbitListenerHandler.exchangeName, "policyRevert_delay", sysUser);
+        sysUser.setRoutingKey("queueDelay_delay");
+        //延迟队列
+        rabbitTemplate.convertAndSend(RabbitListenerDelay.exchangeName, "queueDelay_delay", sysUser);
     }
 
 

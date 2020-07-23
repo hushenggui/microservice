@@ -51,13 +51,4 @@ public class RabbitListenerFanout {
         System.out.println(sysUser);
     }
 
-    @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = "work1", durable = "true"),
-            exchange = @Exchange(value = exchangeName,type = ExchangeTypes.FANOUT,ignoreDeclarationExceptions = "true"))
-    )
-    public void fanout4(SysUser sysUser) {
-        System.out.println();
-        System.out.println("RabbitListener work1 -- >  ");
-        System.out.println(sysUser);
-    }
 }
