@@ -7,6 +7,7 @@ import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import tuacy.microservice.framweork.bootqueue.rabbitmq.config.RabbitMQConfig;
 import tuacy.microservice.framweork.bootqueue.rabbitmq.model.SysUser;
 
 import java.util.HashMap;
@@ -21,8 +22,12 @@ import java.util.Map;
 @Component
 @Slf4j
 public class RabbitListenerDelay {
+
     //
     public static final String exchangeName = "hsg-service-delay";
+    public static final String QUEUEDELAY_DELAY = "queueDelay_delay";
+    public static final String QUEUEDELAY = "queueDelay";
+
 
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "queueDelay", durable = "true"),
@@ -48,20 +53,4 @@ public class RabbitListenerDelay {
         System.out.println("RabbitListener delay2 -- >  ");
         System.out.println(sysUser);
     }*/
-
-
-
-    @Bean
-    public org.springframework.amqp.core.Queue queueDelay(){
-        Map<String, Object> arguments = new HashMap<String,Object>();
-        arguments.put("x-dead-letter-exchange",exchangeName);
-        arguments.put("x-dead-letter-routing-key","queueDelay");
-        arguments.put("x-message-ttl",20000);
-        arguments.put("x-queue-type","classic");
-        org.springframework.amqp.core.Queue queue = new org.springframework.amqp.core.Queue("queueDelay_delay",true,false,false,arguments);
-        return queue;
-    }
-
-
-
 }
