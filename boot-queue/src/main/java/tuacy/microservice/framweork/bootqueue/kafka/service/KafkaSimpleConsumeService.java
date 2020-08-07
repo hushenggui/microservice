@@ -22,7 +22,7 @@ public class KafkaSimpleConsumeService {
         Optional<Object> kafkaMassage = Optional.ofNullable(consumerRecord.value());
         if(kafkaMassage.isPresent()){
             Object o = kafkaMassage.get();
-            log.info("kafka consumer message {}",o);
+            log.info("kafka consumer11111111 message {}",o);
         }
     }
 
@@ -32,7 +32,7 @@ public class KafkaSimpleConsumeService {
         Optional<Object> kafkaMassage = Optional.ofNullable(consumerRecord.value());
         if(kafkaMassage.isPresent()){
             Object o = kafkaMassage.get();
-            log.info("kafka consumer1111 message {}",o);
+            log.info("kafka consumer2222222 message {}",o);
         }
     }
 }
