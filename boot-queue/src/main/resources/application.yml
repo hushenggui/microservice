@@ -23,6 +23,10 @@ spring:
     publisher-confirms: true
     #启动消息失败返回，比如路由不到队列时触发回调
     publisher-returns: true
+    listener:
+      simple:
+        #确认模式
+        acknowledge-mode: auto
 
   kafka:
     bootstrap-servers: 192.168.1.80:9092

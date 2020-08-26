@@ -42,7 +42,7 @@ public class QueueConfig {
                 .durable(RabbitListenerDelay.QUEUEDELAY_DELAY)
                 .withArgument("x-dead-letter-exchange", RabbitListenerDelay.exchangeName)//到期后转发的交换机
                 .withArgument("x-dead-letter-routing-key", "queueDelay")//到期后转发的路由键
-                .withArgument("x-message-ttl",20000)
+                .withArgument("x-message-ttl",20000)//毫秒
                 .withArgument("x-queue-type","classic")
                 .build();
     }

@@ -17,17 +17,30 @@ public class RabbitMQProducer {
     RabbitTemplate rabbitTemplate;
 
 
-    //工作模式
-    public void sendMsg(){
+    //普通工作模式
+    public void sendMsgWork(){
         SysUser sysUser = new SysUser();
         sysUser.setName("zhangsan");
-        sysUser.setRoutingKey("work1");
-        rabbitTemplate.convertAndSend("", "work1", sysUser);
+        sysUser.setRoutingKey("work-direct");
+        rabbitTemplate.convertAndSend(RabbitListenerDirect.exchangeName, "work-direct", sysUser);
+    }
+
+    //延迟模式 -- 死信队列
+    public void sendMsgDelay(){
+        SysUser sysUser = new SysUser();
+        sysUser.setName("zhangsan");
         sysUser.setRoutingKey("queueDelay_delay");
         //延迟队列
         rabbitTemplate.convertAndSend(RabbitListenerDelay.exchangeName, "queueDelay_delay", sysUser);
     }
 
+    //负载模式
+    public void sendMsgFuzai(){
+        SysUser sysUser = new SysUser();
+        sysUser.setName("zhangsan");
+        sysUser.setRoutingKey("work1");
+        rabbitTemplate.convertAndSend("", "work1", sysUser);
+    }
 
     //fanout模式
     public void sendMsgFanout(){
@@ -49,5 +62,12 @@ public class RabbitMQProducer {
         rabbitTemplate.convertAndSend(RabbitListenerTopic.exchangeName, "work-topic.delay2", sysUser);
     }
 
+    //手动确认模式
+    public void sendMsgManual(){
+        SysUser sysUser = new SysUser();
+        sysUser.setName("zhangsan");
+        sysUser.setRoutingKey("manual");
+        rabbitTemplate.convertAndSend(RabbitListenerManual.exchangeName, "manual", sysUser);
+    }
 
 }

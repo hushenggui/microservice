@@ -17,23 +17,46 @@ public class RabbitController {
     @Autowired
     RabbitMQProducer rabbitMQProducer;
 
-    @RequestMapping("sendMsg")
+    //工作模式
+    @RequestMapping("sendMsgWork")
     public String rabbitmqTest(){
-        rabbitMQProducer.sendMsg();
-        return "sendMsg";
+        rabbitMQProducer.sendMsgWork();
+        return "sendMsgWork";
     }
 
-
+    //发布订阅模式
     @RequestMapping("sendMsgFanout")
     public String rabbitmqFanout(){
         rabbitMQProducer.sendMsgFanout();
         return "sendMsgFanout";
     }
 
+    //主题模式
     @RequestMapping("sendMsgTopic")
     public String rabbitmqTopic(){
         rabbitMQProducer.sendMsgTopic();
         return "sendMsgTopic";
+    }
+
+    //手动确认
+    @RequestMapping("sendMsgManual")
+    public String rabbitmqManual(){
+        rabbitMQProducer.sendMsgManual();
+        return "sendMsgManual";
+    }
+
+    //私信队列
+    @RequestMapping("sendMsgDelay")
+    public String sendMsgDelay(){
+        rabbitMQProducer.sendMsgDelay();
+        return "sendMsgDelay";
+    }
+
+    //负载测试
+    @RequestMapping("sendMsgFuzai")
+    public String sendMsgFuzai(){
+        rabbitMQProducer.sendMsgFuzai();
+        return "sendMsgFuzai";
     }
 
 }
