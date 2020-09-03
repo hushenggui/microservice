@@ -19,6 +19,7 @@ import java.util.Optional;
 public class KafkaSimpleConsumeService {
     @KafkaListener(topics = "first",groupId = "cuntomer1")
     public void consumer(ConsumerRecord consumerRecord){
+        log.info(consumerRecord.toString());
         Optional<Object> kafkaMassage = Optional.ofNullable(consumerRecord.value());
         if(kafkaMassage.isPresent()){
             Object o = kafkaMassage.get();
@@ -29,6 +30,7 @@ public class KafkaSimpleConsumeService {
 
     @KafkaListener(topics = "first",groupId = "cuntomer2")
     public void consumer1(ConsumerRecord consumerRecord){
+        log.info(consumerRecord.toString());
         Optional<Object> kafkaMassage = Optional.ofNullable(consumerRecord.value());
         if(kafkaMassage.isPresent()){
             Object o = kafkaMassage.get();

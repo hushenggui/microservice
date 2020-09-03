@@ -20,6 +20,7 @@
         <module>mybatis-interceptor</module>
         <module>google-guava-study</module>
         <module>boot-husg</module>
+        <module>boot-lock</module>
     </modules>
 
     <name>microservice-framwork</name>
