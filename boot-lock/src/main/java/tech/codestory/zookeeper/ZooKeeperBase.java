@@ -6,11 +6,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+
+import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.profiler.Profiler;
 
 /**
  * 为 ZooKeeper测试代码创建一个基类，封装建立连接的过程
@@ -18,6 +19,7 @@ import org.slf4j.profiler.Profiler;
  * @author junyongliao
  * @date 2019/8/16
  */
+@Slf4j
 public class ZooKeeperBase implements Watcher {
     /** 日志，不使用 @Slf4j ，是要使用子类的log */
     Logger log = null;
@@ -36,18 +38,15 @@ public class ZooKeeperBase implements Watcher {
     public ZooKeeperBase(String address) throws IOException {
         log = LoggerFactory.getLogger(getClass());
 
-        Profiler profiler = new Profiler(this.getClass().getName() + " 连接到ZooKeeper");
-        profiler.start("开始链接");
+        log.info(this.getClass().getName() + " 连接到ZooKeeper");
+        log.info("开始链接");
         zooKeeper = new ZooKeeper(address, 30000, this);
         try {
-            profiler.start("等待连接成功的Event");
+            log.info("等待连接成功的Event");
             connectedSemaphore.await();
         } catch (InterruptedException e) {
             log.error("InterruptedException", e);
         }
-        profiler.stop();
-        profiler.setLogger(log);
-        profiler.log();
     }
 
     /**
