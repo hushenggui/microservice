@@ -1,4 +1,7 @@
 package com.tuacy.microservice.framework.common.utils;
+import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.asymmetric.KeyType;
+import cn.hutool.crypto.asymmetric.RSA;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 
@@ -17,6 +20,14 @@ import java.util.Map;
  * @program: microservice-framework
  * @description: RSA工具类
  * @author: hushenggui
+ *
+ * java security 包下 公钥加密私钥解密
+ *
+ * hutool包下 则是私钥加密 公钥解密
+ *
+ *
+ *
+ *
  * @create: 2020-09-04 15:58
  **/
 public class RSAUtils {
@@ -175,6 +186,28 @@ public class RSAUtils {
         return resultDatas;
     }
 
+    /**
+     * 加密
+     * @param orgData
+     * @param privateKey
+     * @return
+     */
+    public static String encrypt(String orgData, String privateKey) {
+        cn.hutool.crypto.asymmetric.RSA rsa = SecureUtil.rsa(privateKey, null);
+        return new String(Base64Util.encode(rsa.encrypt(orgData, KeyType.PrivateKey)));
+    }
+
+    /**
+     * 解密
+     * @param signData
+     * @param publicKey
+     * @return
+     */
+    public static String decrypt(String signData, String publicKey) {
+        RSA rsa = SecureUtil.rsa(null, publicKey);
+        return new String(rsa.decrypt(signData, KeyType.PublicKey));
+    }
+
     public static void main (String[] args) throws Exception {
         Map<String, String> keyMap = RSAUtils.createKeys(1024);
         String  publicKey = keyMap.get("publicKey");
@@ -190,6 +223,11 @@ public class RSAUtils {
         System.out.println("密文：\r\n" + encodedData);
         String decodedData = RSAUtils.privateDecrypt(encodedData, RSAUtils.getPrivateKey(privateKey));
         System.out.println("解密后文字: \r\n" + decodedData);
+
+       /* String privateKey = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJNhIH9zgKn";
+        String sign = "3CBFE2B76CEA683205B339CDA027EEFB";
+        String decodedData = RSAUtils.decrypt(sign,privateKey);
+        System.out.println("解密后文字: \r\n" + decodedData);*/
 
 
     }
