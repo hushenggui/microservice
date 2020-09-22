@@ -229,6 +229,15 @@ public class RSAUtils {
         String decodedData = RSAUtils.decrypt(sign,privateKey);
         System.out.println("解密后文字: \r\n" + decodedData);*/
 
+       /*String publickey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCTYSB_c4Cp_lkgiEWSuWnspK8degbkClvL94ZPhi3kU326bSpsMwt1O5WEiE-BztlzGFqA3hZr-On0CHxqZLxkUxwjxAmSm9p0mf_MpA__iZSDC3FiL9KLt92kYLYNR3U7GFYJVDLO_ZmcldXcv1qWYZFtaMp4KVgu_icnZwlquQIDAQAB";
+       String priviteKey = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJNhIH9zgKn-WSCIRZK5aeykrx16BuQKW8v3hk-GLeRTfbptKmwzC3U7lYSIT4HO2XMYWoDeFmv46fQIfGpkvGRTHCPECZKb2nSZ_8ykD_-JlIMLcWIv0ou33aRgtg1HdTsYVglUMs79mZyV1dy_WpZhkW1oyngpWC7-JydnCWq5AgMBAAECgYB-WdS8r89s7iyHIY1UHzXatc2T3dwugVr14P37C7QofhPaUmD-Zjy6gxzKhPp09VujuwtMVBqw8rPQjb3skPSZVuc0cTSe9Du6AYfM08PLNtXbVYFbQRv8LFAdqAGFTPVJt9O9sUe6Oh-R0i2Dv9n3Vy1To-puj-6KIWjWfmafKQJBANq7kHxA_P6Am_FUbMNdzTbBM8K8SM2fwB65h-mRCzchHXT0aGlzIZEvBfs4eYAkP2gOTo8R6lGktq5zkVwVk-MCQQCsfVsZc0WJ1npm0Em6HEyS9Hg602d3ndEcJsWvhyULel4KeXzO6ZRRqagjQthmucrkBYuYLs5UqoVoBxgljmGzAkEA0wXfuDCOpA555FLZ94W4pRmyES7LYi28EShXWlwHoPE-1QWy8gEUIlhmgd8TQTA3R_F9kwPqt0ecwyNV2qwqlwJAVVaPw7-sH83lMQjL8TAfEnWxJimBf0StOGhWVclfIpagAD6q6RPXNa_iZ8-ikPBK2RWFQv2lR242IomgALS40QJAHiNCrYJp8LxMwSyZp_MYOfRrvriiL0SMBBR0-ilDOTQSYk_ms82MBZwRFvi_oUxKEuFw_JRBE-j3w1gM-G_iNw";
+
+       String salt = "123";
+
+       String enStr =  RSAUtils.encrypt(salt,priviteKey);
+       String deStr = RSAUtils.decrypt(enStr,publickey);
+        System.out.println(deStr);*/
+
 
     }
 }
