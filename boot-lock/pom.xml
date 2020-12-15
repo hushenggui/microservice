@@ -11,7 +11,7 @@
     <groupId>tuacy.microservice.framweork</groupId>
     <artifactId>boot-lock</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>boot-queue</name>
+    <name>boot-lock</name>
     <description>Demo project for Spring lock</description>
 
     <dependencies>

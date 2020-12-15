@@ -1,5 +1,5 @@
 package tuacy.microservice.framweork;
-
+import com.google.gson.Gson;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.DescribeTopicsResult;
 import org.junit.Test;
@@ -26,10 +26,19 @@ public class KafkaTest {
 
     @Autowired
     private AdminClient adminClient;
+    Gson gson = new Gson();
 
     @Test
     public void testSelectTopicInfo() throws ExecutionException, InterruptedException {
         DescribeTopicsResult result = adminClient.describeTopics(Arrays.asList("first"));
         result.all().get().forEach((k,v)->System.out.println("k: "+k+" ,v: "+v.toString()+"\n"));
     }
+
+    @Test
+    public void testPass(){
+
+
+    }
+
+
 }

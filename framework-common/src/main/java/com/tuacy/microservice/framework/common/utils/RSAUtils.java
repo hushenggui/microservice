@@ -209,7 +209,7 @@ public class RSAUtils {
     }
 
     public static void main (String[] args) throws Exception {
-        /*Map<String, String> keyMap = RSAUtils.createKeys(1024);
+        Map<String, String> keyMap = RSAUtils.createKeys(1024);
         String  publicKey = keyMap.get("publicKey");
         String  privateKey = keyMap.get("privateKey");
         System.out.println("公钥: \n\r" + publicKey);
@@ -222,21 +222,21 @@ public class RSAUtils {
         String encodedData = RSAUtils.publicEncrypt(str, RSAUtils.getPublicKey(publicKey));
         System.out.println("密文：\r\n" + encodedData);
         String decodedData = RSAUtils.privateDecrypt(encodedData, RSAUtils.getPrivateKey(privateKey));
-        System.out.println("解密后文字: \r\n" + decodedData);*/
+        System.out.println("解密后文字: \r\n" + decodedData);
 
        /* String privateKey = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJNhIH9zgKn";
         String sign = "3CBFE2B76CEA683205B339CDA027EEFB";
         String decodedData = RSAUtils.decrypt(sign,privateKey);
         System.out.println("解密后文字: \r\n" + decodedData);*/
 
-       String publickey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDWoqkOKdSbqJYzrt9u7vGBukllvGoz5WAKVy8uqkkUtNbI0I9I55BfD0PPoTbBkf8iQimiH-7OwlR4I1YmU3PnObp_5xczR_HuZ_Deha_6Qc4vUi_NLafWlvPOsjhTz4uEDM6b4u-E1Yn8fsH4_6QGgq01ZmiYJPeYs1sEmcq62wIDAQAB";
+       /*String publickey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDWoqkOKdSbqJYzrt9u7vGBukllvGoz5WAKVy8uqkkUtNbI0I9I55BfD0PPoTbBkf8iQimiH-7OwlR4I1YmU3PnObp_5xczR_HuZ_Deha_6Qc4vUi_NLafWlvPOsjhTz4uEDM6b4u-E1Yn8fsH4_6QGgq01ZmiYJPeYs1sEmcq62wIDAQAB";
        String priviteKey = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBANaiqQ4p1JuoljOu327u8YG6SWW8ajPlYApXLy6qSRS01sjQj0jnkF8PQ8-hNsGR_yJCKaIf7s7CVHgjViZTc-c5un_nFzNH8e5n8N6Fr_pBzi9SL80tp9aW886yOFPPi4QMzpvi74TVifx-wfj_pAaCrTVmaJgk95izWwSZyrrbAgMBAAECgYEAkXT-2Mhke3EPCcuTRFzOcrpKj5XW64ChS6C2KwvgJxY_ESy2ThQQdTulGwsITrqgixkHmgXGE30DPb_E3Ihl3Kkkw7oipCbx8jdJd3LbXVQBEwkN8zT2Qc5m-RExsgYaxuuZTgqrMYY-3EZCSKiM7-EQu5X236jKIvIx_mCnDzECQQD-spKB7r8m1R50alS99RqLSkitVQbMuk6NF_y1vCtbEyd36y5Jlg9fLB8qceCsrUnltVZuShMnc2j0o9mPwnCdAkEA17ukaCc0-16hQZUvmHjx3IsfecrOqXP0KpfpmC0mfB685R8Ke3k6hgH-6kmfYU6NxnoHWPB6r7FUziVcJ-ST1wJAY3VoMMUCcC-ZDOzY2rT0AKCpcMZbOWcndYGAdZdddtsr9nAoSyQGLKwWH4UIr2WcDc-aSMc0Y5t1yNKTCshrIQJAPZ2MQWshSMIoUHDpnSS9_32EyeZQzDkf_aJRx3Lt0Pl-ffo1pjpjqq6bPhM1ADfNamij_JUClXeSfyZQgdxZFQJAO7uZTpWuDOxEUr6TbGiA988OjFDB92uEMGOM1Xiklm-Ulmcgd12UC6U0AKUquB75XT2tZyVtLlbujKh0PcajVQ";
 
        String salt = "123";
        String enStr =  RSAUtils.encrypt(salt,priviteKey);
         System.out.println(enStr);
        String deStr = RSAUtils.decrypt(enStr,publickey);
-        System.out.println(deStr);
+        System.out.println(deStr);*/
 
 
     }

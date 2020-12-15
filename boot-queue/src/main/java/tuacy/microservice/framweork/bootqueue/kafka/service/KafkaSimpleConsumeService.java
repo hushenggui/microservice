@@ -17,7 +17,7 @@ import java.util.Optional;
 @Component
 @Slf4j
 public class KafkaSimpleConsumeService {
-    @KafkaListener(topics = "first",groupId = "cuntomer1")
+    @KafkaListener(topics = "hsg01",groupId = "cuntomer1")
     public void consumer(ConsumerRecord consumerRecord){
         log.info(consumerRecord.toString());
         Optional<Object> kafkaMassage = Optional.ofNullable(consumerRecord.value());
@@ -28,7 +28,7 @@ public class KafkaSimpleConsumeService {
     }
 
 
-    @KafkaListener(topics = "first",groupId = "cuntomer2")
+    @KafkaListener(topics = "hsg01",groupId = "cuntomer2")
     public void consumer1(ConsumerRecord consumerRecord){
         log.info(consumerRecord.toString());
         Optional<Object> kafkaMassage = Optional.ofNullable(consumerRecord.value());
